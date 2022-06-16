@@ -14,9 +14,9 @@
                     <div class="container">
                         <div class="row clearfix">
                             <div class="text-center offset-4 col-md-4">
-                                Invoice No*: <input type="text" class="form-control" required>
+                                Invoice No*: <input type="text" name='invoice[invoice_no]' class="form-control" required>
 
-                                Invoice date*: <input type="text" class="form-control" value="{{date('Y-m-d')}}" required>
+                                Invoice date*: <input type="text" name='invoice[invoice_date]' value="{{date('Y-m-d H:i:s')}}" required>
                             </div>
                             <br> </br>
 
@@ -77,7 +77,7 @@
                                         <tr>
                                             <th class="text-center">Tax</th>
                                             <td class="text-center"><div class="input-group mb-2 mb-sm-0">
-                                                <input type="number" class="form-control" id="tax" placeholder="0">
+                                                <input type="number" class="form-control" name='invoice[tax]' id="tax" placeholder="0">
                                                 <div class="input-group-addon">%</div>
                                             </div></td>
                                         </tr>
