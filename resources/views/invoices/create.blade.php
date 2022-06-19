@@ -59,8 +59,8 @@
 
                         <div class="row clearfix">
                             <div class="d-flex justify-content-between col-md-12">
-                                <button id="add_row" class="order-1 btn btn-primary">Add Row</button>
-                                <button id='delete_row' class="order-2 btn btn-info ">Delete Row</button>
+                                <button id="add_row" type="button" class="order-1 btn btn-primary">Add Row</button>
+                                <button id='delete_row' type="button" class="order-2 btn btn-info ">Delete Row</button>
                             </div>
                         </div>
 

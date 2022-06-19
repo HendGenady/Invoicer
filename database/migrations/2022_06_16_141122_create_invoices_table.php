@@ -19,7 +19,7 @@ class CreateInvoicesTable extends Migration
             $table->string('invoice_no');
             $table->date('invoice_date');
             $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
