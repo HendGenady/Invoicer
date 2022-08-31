@@ -8,15 +8,13 @@
                 <div class="card-body">
                     <div class="container">
                         <div class="row clearfix">
-                        <div class="text-center col-md-12">
-                            <img src="{{ config('invoices.logo') }}" width="100" height="100">
-                               <br> </br>
-                        </div>
+                            <div class="text-center col-md-12">
+                                <img src="{{ config('invoices.logo') }}" width="100" height="100"><br/>
+                            </div>
                             <div class="text-center offset-4 col-md-4">
                                 <b> {{ $invoice->invoice_no }} </b> <br/>
                                 <b> {{ $invoice->invoice_date }} </b> <br/>
-                            </div>
-                            <br/>
+                            </div> <br/>
 
                             <div class="col-md-6 float-left" style="margin-top:20px">
                                 <b>Customer details:</b>

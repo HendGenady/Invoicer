@@ -29,7 +29,10 @@
                                 <td> {{ $invoice->invoice_date }} </td>
                                 <td> {{ $invoice->customer->name }}</td>
                                 <td> {{ $invoice->total_amount }} </td>
-                                <td> <a href="{{route('invoices.show',$invoice->id)}}" class="btn btn-info"> more details </a> </td>
+                                <td> 
+                                    <a href="{{route('invoices.show',$invoice->id)}}" class="btn btn-info"> more details </a> 
+                                    <a href="{{route('invoices.download',$invoice->id)}}" class="btn btn-warning"> Download PDF </a> 
+                                </td>
                             </tr>
                         @endforeach
                     </table>

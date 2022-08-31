@@ -8,8 +8,13 @@ use App\Models\Invoice;
 
 class InvoicesController extends Controller
 {
-    public function create()
+    public function index()
     {
+
+    }
+    
+    public function create()
+    { 
         return view('invoices.create');
     }
 
@@ -32,5 +37,12 @@ class InvoicesController extends Controller
     {
         $invoice=Invoice::find($id);
         return view('invoices.show',compact('invoice'));
+    }
+
+    public function download($id)
+    {
+        $invoice=Invoice::find($id);
+        $pdf=\PDF::loadView('invoices.pdf',compact('invoice'));
+        return $pdf->stream('invoice.pdf');
     }
 }
