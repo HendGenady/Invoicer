@@ -1,23 +1,21 @@
 <!DOCTYPE html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link href="{{public_path('css/app.css')}}" rel="stylesheet" >
+        <!-- <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css" > -->
         <style>
-            body{
-                background:inherit;
-                font-size:14px;
-            },
-            .tbl-table{
-                width:inherit;
-                border:
-            },
-            .th-total th, .tbl-table tr, .tbl-total td
-            {
-                border:0;
+            td{
+                text-align: center;
+            }
+            th{
+                padding:10px;
+            }
+            body{ 
+                font-family: DejaVu Sans;
             }
         </style>
     </head>
     <body>
-        @yield('content')
+        @yield('content1')
+        <script src="{{ asset('js/app.js') }}" type="text/js"></script>
     </body>
 </html>

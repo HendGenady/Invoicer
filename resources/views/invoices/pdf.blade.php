@@ -1,78 +1,78 @@
 @extends('layouts.pdf')
 
-@section('content')
+@section('content1')
+    <center>
+        <div>
+            @if(config('invoices.footer_text') != '')
+                <div>
+                    <img width="10%" hight="10%" src="{{ public_path('/images/logo.png') }}"><br/> <br/>
+                </div>
+            @endif
+            <div>
+                <b> {{ $invoice->invoice_no }} </b> <br/>
+                <b> {{ $invoice->invoice_date }} </b> <br/>
+            </div> <br/>
+        </div>
+    </center>
 
-    <div class="clearfix">
-        @if(config('invoices.logo') != '')
-            <div class="text-center">
-                <img src="{{ config('invoices.logo') }}"><br/>
-            </div>
-        @endif
-        <div class="text-center">
-            <b> {{ $invoice->invoice_no }} </b> <br/>
-            <b> {{ $invoice->invoice_date }} </b> <br/>
-        </div> <br/>
-    </div>
-
-    <div class="clearfix mt-3">
-        <div class="float-left">
+    <div>
+        <div>
             <b>Customer details:</b>
-            <br>
-            <b> To: </b> {{ $invoice->customer->name }} <br/>
-            <b> phone </b> {{ $invoice->customer->phone }} </b> <br/>
-            <b> Address </b> {{ $invoice->customer->address }} </b> <br/>
+            <p> To: {{ $invoice->customer->name }} </p>
+            <p> Phone: {{ $invoice->customer->phone }} </p>
+            <p> Address: {{ $invoice->customer->address }} </p>
         </div>
     </div> <br/>
 
-    <div class="clearfix mt-3">
-        <table class="table table-bordered">
+    <div>
+        <table width="100%">
             <thead>
                 <tr>
-                    <th class="text-center"> # </th>
+                    <th> # </th>
                     <th> Product </th>
-                    <th class="text-center"> Qty </th>
-                    <th class="text-center"> Price </th>
-                    <th class="text-center"> Total </th>
+                    <th> Qty </th>
+                    <th> Price </th>
+                    <th> Total </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($invoice->product as $key=>$product)
-                    <tr id='addr0'>
+                    <tr>
                         <td> {{ $loop->iteration }} </td>
                         <td> {{ $product->name }} </td>
                         <td> {{ $product->quantity }} </td>
                         <td> {{ $product->price }} </td>
                         <td> {{ number_format($product->price * $product->quantity, 2) }} </td>
-                    </tr>
+                    </tr> <br/>
                 @endforeach
             </tbody>
         </table>
-    </div>
+    </div> <br/>
 
-    <div class="clearfix mt-3">
-        <table class="table floar-right tbl-total">
+    <div>
+        <table>
             <tbody>
                 <tr>
-                    <th class="text-center" width="50%">Sub Total</th>
-                    <td class="text-center"> {{ $invoice->total_amount }} </td>
+                    <th width="50%">Sub Total</th>
+                    <td> {{ $invoice->total_amount }} </td>
                 </tr>
                 <tr>
-                    <th class="text-center">Tax</th>
-                    <td class="text-center">{{ $invoice->tax }}%</td>
+                    <th>Tax</th>
+                    <td>{{ $invoice->tax }}%</td>
                 </tr>
                 <tr>
-                    <th class="text-center">Tax Amount</th>
-                    <td class="text-center">{{ ($invoice->tax * $invoice->total_amount)/100}}</td>
+                    <th>Tax Amount</th>
+                    <td>{{ ($invoice->tax * $invoice->total_amount)/100}}</td>
                 </tr>
                 <tr>
-                    <th class="text-center">Grand Total</th>
-                    <td class="text-center">{{ $invoice->total_amount + ($invoice->tax * $invoice->total_amount)/100}}</td>
+                    <th>Grand Total</th>
+                    <td>{{ $invoice->total_amount + ($invoice->tax * $invoice->total_amount)/100}}</td>
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div> <br/>
 
-    <div class="clearfix mt-3">
-        {{config('invoices.footer_text')}}
+    <div>
+        <center>{{config('invoices.footer_text')}} </center>
     </div>
 @endsection
