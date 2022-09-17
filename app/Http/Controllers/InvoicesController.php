@@ -30,7 +30,7 @@ class InvoicesController extends Controller
                 'price' => $request->price[$key]
             ]);
         }
-        return 'Done    ';
+        return redirect()->route('invoices.index');
     }
 
     public function show($id)
