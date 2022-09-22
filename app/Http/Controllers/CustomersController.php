@@ -59,7 +59,8 @@ class CustomersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer=Customer::find($id);
+        return view('customers.edit',compact('customer'));
     }
 
     /**
@@ -71,7 +72,12 @@ class CustomersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $customer = Customer::whereId($id)->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'address' => $request-> address
+        ]);
+        return redirect()->route('customers.index');
     }
 
     /**
