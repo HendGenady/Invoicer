@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Invoice;
+use App\Models\Product;
+use App\Models\InvoiceProduct;
 
 class InvoicesController extends Controller
 {
@@ -15,28 +17,34 @@ class InvoicesController extends Controller
     
     public function create()
     { 
-        return view('invoices.create');
+        $customers=Customer::all();
+        return view('invoices.create',compact('customers'));
     }
 
     public function store(Request $request){
-        $customer=Customer::create($request->customer);
-        $invoice=$customer->invoice()->create($request->invoice);
-        // $invoice=Invoice::create($request->invoice + ['customer_id' => $customer->id]);
+        // $customer=Customer::create($request->customer);
+        // $invoice=$customer->invoice()->create($request->invoice);
+        $invoice=Invoice::create($request->invoice);
         foreach($request->product as $key => $prod)
         {
-            $invoice->product()->create([
+            $product=Product::firstOrCreate([
                 'name' => $prod,
-                'quantity' => $request->qty[$key],
                 'price' => $request->price[$key]
             ]);
+            InvoiceProduct::firstOrCreate([
+                'invoice_id' => $invoice->id,
+                'product_id' => $product->id,
+                'quantity' => $request->qty[$key],
+            ]);
         }
-        return redirect()->route('invoices.index');
+        return redirect()->route('home');
     }
 
     public function show($id)
     {
         $invoice=Invoice::find($id);
-        return view('invoices.show',compact('invoice'));
+        $products=$invoice->product;
+        return view('invoices.show',compact('invoice','products'));
     }
 
     public function download($id)

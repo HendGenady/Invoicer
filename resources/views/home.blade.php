@@ -29,7 +29,7 @@
                             <tr>
                                 <td> {{ $invoice->invoice_no }} </td>
                                 <td> {{ $invoice->invoice_date }} </td>
-                                <td> {{ $invoice->customer->name }}</td>
+                                <td> {!! $invoice->customer->name !!}</td>
                                 <td> {{ $invoice->total_amount }} </td>
                                 <td> 
                                     <a href="{{route('invoices.show',$invoice->id)}}" class="btn btn-info"> more details </a> 

@@ -25,12 +25,16 @@
                         </tr>
                         @foreach($customers as $customer)
                             <tr>
-                                <td> {{ $customer->name }} </td>
+                                <td> {!! $customer->name !!} </td>
                                 <td> {{ $customer->address }} </td>
                                 <td> {{ $customer->phone }}</td>
                                 <td> 
                                     <a href="{{route('customers.edit',$customer->id)}}" class="btn btn-sm btn-info">Edit</a> 
-                                    <a href="{{route('customers.destroy',$customer->id)}}" class="btn btn-sm btn-warning">Delete</a> 
+                                    <form action="{{route('customers.destroy',$customer->id)}}" method="POST" style="display:inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button> 
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

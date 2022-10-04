@@ -20,7 +20,16 @@
                                 </div>
                                 <br> </br>
 
-                                <div class="text-center offset-4 col-md-4" style="margin-top:20px">
+                                <div class='float-left col-md-6'>
+                                    <b>Choose Customer:</b> <br/>
+                                    <select name="invoice[customer_id]">
+                                        @foreach($customers as $customer)
+                                            <option value="{{$customer->id}}"> {!! $customer->name !!} </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <!-- <div class="text-center offset-4 col-md-4" style="margin-top:20px">
                                     <b>Customer details:</b>
                                     <br>
                                     Name*:  <input type="text" name='customer[name]' class="form-control" placeholder="AA001" value="" required>
@@ -28,7 +37,7 @@
                                     Phone: <input type="text" name='customer[phone]' class="form-control" value="" >
 
                                     Address: <input type="text" name='customer[address]' class="form-control" value="">
-                                </div>
+                                </div> -->
 
                                 <br>
 
