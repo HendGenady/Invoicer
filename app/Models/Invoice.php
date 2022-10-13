@@ -18,7 +18,7 @@ class Invoice extends Model
 
     public function product()
     {
-        return $this->belongsToMany('App\Models\Product', 'invoice_products', 'invoice_id', 'product_id');
+        return $this->belongsToMany('App\Models\Product', 'invoice_products', 'invoice_id', 'product_id')->withTrashed();
     }
 
     public function invoiceProduct()

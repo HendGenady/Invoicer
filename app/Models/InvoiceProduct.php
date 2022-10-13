@@ -26,8 +26,7 @@ class InvoiceProduct extends Model
 
     public function getTotalAmountAttribute()
     {
-        // dd('ghj');
-        $product=Product::find($this->product_id);
+        $product=Product::whereId($this->product_id)->withTrashed()->first();
         return number_format($product->price*$this->quantity,2);
     }
 }

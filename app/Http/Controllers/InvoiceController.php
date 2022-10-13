@@ -8,7 +8,7 @@ use App\Models\Invoice;
 use App\Models\Product;
 use App\Models\InvoiceProduct;
 
-class InvoicesController extends Controller
+class InvoiceController extends Controller
 {
     public function index()
     {
@@ -18,7 +18,8 @@ class InvoicesController extends Controller
     public function create()
     { 
         $customers=Customer::all();
-        return view('invoices.create',compact('customers'));
+        $products=Product::all();
+        return view('invoices.create',compact('customers','products'));
     }
 
     public function store(Request $request){

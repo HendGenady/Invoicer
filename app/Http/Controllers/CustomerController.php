@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Customer;
 
-class ProductsController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        $customers= Customer::all();
+        return view ('customers.index',compact('customers'));
     }
 
     /**
@@ -23,7 +25,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        return view('customers.create');
     }
 
     /**
@@ -34,7 +36,8 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customer=Customer::create($request->customer);
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -56,7 +59,8 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer=Customer::find($id);
+        return view('customers.edit',compact('customer'));
     }
 
     /**
@@ -68,7 +72,12 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $customer = Customer::whereId($id)->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'address' => $request-> address
+        ]);
+        return redirect()->route('customers.index')->with('status','Updated Successfully');
     }
 
     /**
@@ -79,6 +88,7 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $customer=Customer::whereId($id)->delete();
+        return redirect()->route('customers.index');
     }
 }

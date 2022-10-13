@@ -31,7 +31,7 @@
                     <th> # </th>
                     <th> Product </th>
                     <th> Qty </th>
-                    <th> Price </th>
+                    <th> Price({{config('invoices.currency')}}) </th>
                     <th> Total </th>
                 </tr>
             </thead>
