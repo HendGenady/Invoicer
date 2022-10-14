@@ -44,7 +44,7 @@
                                                 <td> {{ $product->name }} </td>
                                                 <td> {{ $invoice->invoiceProduct->where('product_id',$product->id)->first()->quantity }} </td>
                                                 <td> {{ $product->price }} </td>
-                                                <td> {{ number_format($product->price * $invoice->invoiceProduct->where('product_id',$product->id)->first()->quantity, 2) }} </td>
+                                                <td> {{ number_format($invoice->invoiceProduct->where('product_id',$product->id)->first()->total_amount) }} </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -60,7 +60,7 @@
                                         <tbody>
                                             <tr>
                                                 <th class="text-center" width="50%">Sub Total</th>
-                                                <td class="text-center"> {{ (int)$invoice->invoiceProduct->where('product_id',$product->id)->first()->total_amount }} </td>
+                                                <td class="text-center"> {{ $invoice->total }} </td>
                                             </tr>
                                             <tr>
                                                 <th class="text-center">Tax</th>
@@ -68,12 +68,11 @@
                                             </tr>
                                             <tr>
                                                 <th class="text-center">Tax Amount</th>
-                                                <td class="text-center">{{ ($invoice->tax * (int)$invoice->invoiceProduct->where('product_id',$product->id)->first()->total_amount)/100}}</td>
+                                                <td class="text-center">{{ ($invoice->tax * $invoice->total)/100}}</td>
                                             </tr>
                                             <tr>
                                                 <th class="text-center">Grand Total</th>
-                                                <td class="text-center">{{ (int)$invoice->invoiceProduct->where('product_id',$product->id)->first()->total_amount + 
-                                                    ($invoice->tax * (int)$invoice->invoiceProduct->where('product_id',$product->id)->first()->total_amount)/100}}</td>
+                                                <td class="text-center">{{ $invoice->total + ($invoice->tax * $invoice->total)/100}}</td>
                                             </tr>
                                         </tbody>
                                     </table>

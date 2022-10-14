@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\InvoiceController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
     // Route::get('invoices/create', [App\Http\Controllers\InvoicesController::class,'create'])->name('invoices.create');

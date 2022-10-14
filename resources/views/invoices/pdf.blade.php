@@ -40,9 +40,9 @@
                     <tr>
                         <td> {{ $loop->iteration }} </td>
                         <td> {{ $product->name }} </td>
-                        <td> {{ $product->quantity }} </td>
+                        <td> {{ $invoice->invoiceProduct->where('product_id',$product->id)->first()->quantity }} </td>
                         <td> {{ $product->price }} </td>
-                        <td> {{ number_format($product->price * $product->quantity, 2) }} </td>
+                        <td> {{ number_format($invoice->invoiceProduct->where('product_id',$product->id)->first()->total_amount) }} </td>
                     </tr> <br/>
                 @endforeach
             </tbody>
@@ -53,20 +53,20 @@
         <table>
             <tbody>
                 <tr>
-                    <th width="50%">Sub Total</th>
-                    <td> {{ $invoice->total_amount }} </td>
+                    <th width="50%">Sub Total({{config('invoices.currency')}})</th>
+                    <td> {{ $invoice->total }} </td>
                 </tr>
                 <tr>
                     <th>Tax</th>
                     <td>{{ $invoice->tax }}%</td>
                 </tr>
                 <tr>
-                    <th>Tax Amount</th>
-                    <td>{{ ($invoice->tax * $invoice->total_amount)/100}}</td>
+                    <th>Tax Amount({{config('invoices.currency')}})</th>
+                    <td>{{ ($invoice->tax * $invoice->total)/100}}</td>
                 </tr>
                 <tr>
-                    <th>Grand Total</th>
-                    <td>{{ $invoice->total_amount + ($invoice->tax * $invoice->total_amount)/100}}</td>
+                    <th>Grand Total({{config('invoices.currency')}})</th>
+                    <td>{{ $invoice->total + ($invoice->tax * $invoice->total)/100}}</td>
                 </tr>
             </tbody>
         </table>

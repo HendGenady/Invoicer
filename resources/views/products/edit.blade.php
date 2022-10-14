@@ -15,7 +15,7 @@
                         Name<span style="color:red" >*</span> :  
                         <input type="text" name='name' class="form-control" placeholder="AA001" value="{{$product->name}}" required>
 
-                        Price<span style="color:red" >*</span> : 
+                        Price({{config('invoices.currency')}})<span style="color:red" >*</span> : 
                         <input type="text" name='price' class="form-control" value="{{$product->price}}" required>
 
                         <input type="submit" class="btn btn-primary" value="Save" />
