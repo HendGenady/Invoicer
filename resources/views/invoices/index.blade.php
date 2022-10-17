@@ -14,15 +14,13 @@
                         </div>
                     @endif
 
-                    <a href="{{ route('invoices.create') }}" class="btn btn-primary">Add new invoice</a>
-
-                    <br/> <br/>
-                    <table class="table">
+                    <table width="100%">
                         <tr>
                             <th> Invoice Nubmer </th>
                             <th> Invoice Date </th>
                             <th> Customer Name </th>
                             <th> Total({{config('invoices.currency')}})</th>
+                            <th> </th>
                             <th> </th>
                         </tr>
                         @foreach($invoices as $invoice)
@@ -31,10 +29,8 @@
                                 <td> {{ $invoice->invoice_date }} </td>
                                 <td> {!! $invoice->customer->name !!}</td>
                                 <td> {{ $invoice->total }} </td>
-                                <td> 
-                                    <a href="{{route('invoices.show',$invoice->id)}}" class="btn btn-info"> more details </a> 
-                                    <a href="{{route('invoices.download',$invoice->id)}}" class="btn btn-warning"> Download PDF </a> 
-                                </td>
+                                <td> <a href="{{route('invoices.show',$invoice->id)}}" class="btn btn-info"> more details </a> </td>
+                                <td> <a href="{{route('invoices.download',$invoice->id)}}" class="btn btn-warning"> Download PDF </a> </td>
                             </tr>
                         @endforeach
                     </table>

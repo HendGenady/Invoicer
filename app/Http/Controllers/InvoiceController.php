@@ -23,16 +23,16 @@ class InvoiceController extends Controller
         return view('invoices.index',compact('invoices'));
     }
     
-    public function create()
+    public function create(Request $request)
     { 
-        $customers=Customer::all();
+        $customer=Customer::find($request->customer_id);
+        //VAT >> Value-Added Tax
+        $tax=14.00; //for Egypt EG
         $products=Product::all();
-        return view('invoices.create',compact('customers','products'));
+        return view('invoices.create',compact('customer','tax','products'));
     }
 
     public function store(Request $request){
-        // $customer=Customer::create($request->customer);
-        // $invoice=$customer->invoice()->create($request->invoice);
         $invoice=Invoice::create($request->invoice);
         foreach($request->product as $key => $prod)
         {
@@ -72,4 +72,16 @@ class InvoiceController extends Controller
         $pdf=\PDF::loadView('invoices.pdf',compact('invoice'));
         return $pdf->stream('invoice.pdf');
     }
+
+    // /**
+    //  * Remove the specified resource from storage.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function destroy($id)
+    // {
+    //     $invoice=Invoice::whereId($id)->delete();
+    //     return redirect()->route('invoices.index')->with('status','Deleted Successfully');
+    // }
 }

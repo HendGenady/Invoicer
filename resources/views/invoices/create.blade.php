@@ -21,12 +21,8 @@
                                 <br> </br>
 
                                 <div class='float-left col-md-6'>
-                                    <b>Choose Customer:</b> <br/>
-                                    <select name="invoice[customer_id]">
-                                        @foreach($customers as $customer)
-                                            <option value="{{$customer->id}}"> {!! $customer->name !!} </option>
-                                        @endforeach
-                                    </select>
+                                    <b>Customer:</b> {{$customer->name }} 
+                                    <input type="hidden" name='invoice[customer_id]' class="form-control" value="{{$customer->id}}">
                                 </div>
 
                                 <!-- <div class="text-center offset-4 col-md-4" style="margin-top:20px">
@@ -56,7 +52,7 @@
                                         <tr id='addr0'>
                                             <td>1</td>
                                             <td>
-                                                <select class="form-control" name="prodcut[]">
+                                                <select class="form-control" name="product[]">
                                                     @foreach($products as $product)
                                                         <option> </option>
                                                         <option value="{{ $product->id }}"> {{ $product->name }} </option>
@@ -93,7 +89,7 @@
                                             <tr>
                                                 <th class="text-center">Tax</th>
                                                 <td class="text-center"><div class="input-group mb-2 mb-sm-0">
-                                                    <input type="number" value='0' class="form-control" name='invoice[tax]' id="tax" placeholder="0">
+                                                    <input type="number" value='{{$tax}}' class="form-control" name='invoice[tax]' id="tax" placeholder="0">
                                                     <div class="input-group-addon">%</div>
                                                 </div></td>
                                             </tr>

@@ -22,6 +22,8 @@
                             <th> Name </th>
                             <th> Address </th>
                             <th> Phone </th>
+                            <th> </th>
+                            <th> </th>
                         </tr>
                         @foreach($customers as $customer)
                             <tr>
@@ -29,13 +31,14 @@
                                 <td> {{ $customer->address }} </td>
                                 <td> {{ $customer->phone }}</td>
                                 <td> 
-                                    <a href="{{route('customers.edit',$customer->id)}}" class="btn btn-sm btn-info">Edit</a> 
+                                    <a href="{{route('customers.edit',$customer->id)}}" class="btn btn-sm btn-info">Edit</a>
                                     <form action="{{route('customers.destroy',$customer->id)}}" method="POST" style="display:inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button> 
                                     </form>
                                 </td>
+                                <td> <a href="{{ route('invoices.create')}}?customer_id={{$customer->id}}" class="btn btn-sx btn-info">Add Invoice</a> </td>
                             </tr>
                         @endforeach
                     </table>
