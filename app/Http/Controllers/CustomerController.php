@@ -15,7 +15,7 @@ class CustomerController extends Controller
     public function index()
     {
         $customers= Customer::all();
-        return view ('customers.index',compact('customers'));
+        return view('customers.index',compact('customers'));
     }
 
     /**
@@ -75,7 +75,7 @@ class CustomerController extends Controller
         $customer = Customer::whereId($id)->update([
             'name' => $request->name,
             'phone' => $request->phone,
-            'address' => $request-> address
+            'address' => $request->address
         ]);
         return redirect()->route('customers.index')->with('status','Updated Successfully');
     }
