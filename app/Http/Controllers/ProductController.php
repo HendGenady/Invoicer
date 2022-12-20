@@ -36,7 +36,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product=Product::create($request->product);
+        Product::create($request->product);
         return redirect()->route('products.index');
     }
 

@@ -16,12 +16,12 @@ class InvoiceProduct extends Model
 
     public function product()
     {
-        return $this->hasMany('App\Models\Product','id','product_id');
+        return $this->hasMany('App\Models\Product', 'id', 'product_id');
     }
 
     public function invoice()
     {
-        return $this->hasMany('App\Models\Invoice','id','invoice_id');
+        return $this->hasMany('App\Models\Invoice', 'id', 'invoice_id');
     }
 
     public function getTotalAmountAttribute()
