@@ -64,6 +64,10 @@
                                 @endif
                             </div>
                         </div>
+                        
+                        <div class="form-row">
+                            <a href="sign-in/github" class="btn btn-secondary btn-block"> Sign In with GitHub </a>
+                        </div>
                     </form>
                 </div>
             </div>
